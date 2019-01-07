@@ -13,7 +13,8 @@ palette_num=10
 frequency=10
 
 #where is the csv to ppm executable located 
-csv_to_ppm='~/projects/ir_samples/csv_to_image/build/image_builder'
+project_dir=`pwd`
+csv_to_ppm="$project_dir/build/image_builder"
 
 mkdir -p $exp_path
 cd $exp_path
