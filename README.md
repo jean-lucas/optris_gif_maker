@@ -10,17 +10,15 @@ http://documentation.evocortex.com/libirimager2/html/index.html
 
 ### Setup
 	
-- clone directory
-- `cd <repo dir>`
-- `mkdir build && cd build`
-- `cmake .. && make`
-
-
 Configure the following parameters in `gif_maker.sh`
 
 - `exp_path` - where are the csv files located
 - `frequency` - what was the time difference between each CSV snapshot
 
+- `mkdir build && cd build`
+- `cmake .. && make`
+
+- to change the palette type or min/max temperatures refer to the `image_builder.cpp` file.
 
 ### Execute
 

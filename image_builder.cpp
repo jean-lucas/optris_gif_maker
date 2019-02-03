@@ -5,7 +5,7 @@
     as the original software, but otherwise Python may be much easier.
 
     The Oprtis PIX tool will generate CVS screen shots at a desired period,
-    for example every 10seconds. This tool allows you to generate these CSV 
+    for example every 10 seconds. This tool allows you to generate these CSV 
     files to PPM files. 
 
     After which, the PPM files can be convert to PNG and subsequently, 
@@ -52,9 +52,6 @@ using namespace std;
 using namespace evo;
 
 
-//Where the csv files are stored, and where the ppm files will be saved
-// string _SAVE_PATH_PREFIX = "/home/jean/Pictures/ir/test/";
-// string _LOAD_PATH_PREFIX = "/home/jean/Pictures/ir/test/";
 
 
 //description of this conversion taken from
@@ -63,8 +60,7 @@ unsigned short convert_temp(float t) {
 	return (short)(10*t + 1000);
 }
 
-
-
+// the save location is in the same directory as the csv files
 void save_ppm_img(unsigned char* ppm, unsigned int size, string name) {
   ofstream img_file(name, std::ios::out);
   img_file.write((const char*) ppm, size);
@@ -74,18 +70,11 @@ void save_ppm_img(unsigned char* ppm, unsigned int size, string name) {
 
 int main(int argc, char** argv) {	
 	
-	string pathname_in = string(argv[1]);
-	string filename_in = string(argv[2]);
+	string pathname_in = string(argv[1]); //where the image will be saved too
+	string filename_in = string(argv[2]); //what csv file to convert to ppm
 
-
-	// ostringstream file_path;
-	// // file_path << _LOAD_PATH_PREFIX << argv[1];
-	// file_path << pathname_in << filename_in;
-	// string file_name = file_path.str();
 
 	string file_name = pathname_in + filename_in;
-	cout << file_name << endl;
-	
 
 	ImageBuilder builder = new ImageBuilder(false);
 
@@ -105,6 +94,7 @@ int main(int argc, char** argv) {
 	ifstream file(file_name);
     string str; 
     vector<vector<float>> all_tokens;
+
     //read each line of csv file
     while (getline(file, str)) {
     	float buf;                 
@@ -163,7 +153,6 @@ int main(int argc, char** argv) {
 	unsigned int size;
 	builder.convert2PPM(ppm, &size, buffer, width, height);
 	save_ppm_img(ppm, size, img_ts);
-
     
 
 	return 0;
